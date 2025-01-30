@@ -9,9 +9,10 @@ $ConfigFile = "$InstallPath\config.json"
 # Create directory if not exists
 if (!(Test-Path $InstallPath)) { New-Item -ItemType Directory -Path $InstallPath | Out-Null }
 
-# Download File Browser
+# Download File Browser using WebClient (fallback method)
 $FileBrowserUrl = "https://github.com/filebrowser/filebrowser/releases/latest/download/windows-amd64-filebrowser.exe"
-Invoke-WebRequest -Uri $FileBrowserUrl -OutFile $Executable
+$WebClient = New-Object System.Net.WebClient
+$WebClient.DownloadFile($FileBrowserUrl, $Executable)
 
 # Get all mounted drives
 $Drives = Get-PSDrive -PSProvider FileSystem | Where-Object { $_.Root -match "^[A-Z]:\\$" } | Select-Object -ExpandProperty Root
