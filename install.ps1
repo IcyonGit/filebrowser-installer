@@ -10,7 +10,7 @@ $ConfigFile = "$InstallPath\config.json"
 if (!(Test-Path $InstallPath)) { New-Item -ItemType Directory -Path $InstallPath | Out-Null }
 
 # Download File Browser using WebClient (fallback method)
-$FileBrowserUrl = "https://github.com/filebrowser/filebrowser/releases/latest/download/windows-amd64-filebrowser.exe"
+$FileBrowserUrl = "https://github.com/filebrowser/filebrowser/releases/download/v2.31.2/windows-amd64-filebrowser.zip"
 $WebClient = New-Object System.Net.WebClient
 $WebClient.DownloadFile($FileBrowserUrl, $Executable)
 
